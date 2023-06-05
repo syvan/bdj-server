@@ -2,6 +2,7 @@ const cron = require("node-cron");
 const express = require("express");
 let nodemailer = require("nodemailer");
 const { curly } = require("node-libcurl");
+const querystring = require('querystring');
 const config = require('./config.json')
 const MAIL_USERNAME = config['MAIL_USERNAME']
 const MAIL_PASSWORD = config['MAIL_PASSWORD']
@@ -12,7 +13,7 @@ app = express();
 const sign = async () => {
     try {
         const {data} = await curly.post('http://106.52.253.76/dxghrest/wxGdAct/actUserSign', {
-            postFields: JSON.stringify({ actLogId: 1 }),
+            postFields: querystring.stringify({actLogId: 1}),
             httpHeader: [
                 'Accept: */*',
                 'Accept-Encoding: gzip, deflate',
@@ -70,14 +71,18 @@ const sendMail = async (msg) => {
 
 cron.schedule("10 31 10 * * *", function(){
     console.log("---------------------");
-    console.log("Running Cron Job");
+    console.log("Running Cron Job" + new Date());
     sign()
-});
+}, {
+   timezone: "Asia/Shanghai"
+ });
 
 cron.schedule("14 1 16 * * *", function(){
     console.log("---------------------");
-    console.log("Running Cron Job");
+    console.log("Running Cron Job" + new Date());
     sign()
-});
+}, {
+   timezone: "Asia/Shanghai"
+ });
 
 app.listen("3128");

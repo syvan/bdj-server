@@ -1,13 +1,10 @@
 const cron = require("node-cron");
-const express = require("express");
 let nodemailer = require("nodemailer");
 const request = require('request');
 const config = require('./config.json')
 const MAIL_USERNAME = config['MAIL_USERNAME']
 const MAIL_PASSWORD = config['MAIL_PASSWORD']
 const MAIL_RECEIVERS = config['MAIL_RECEIVERS']
-
-app = express();
 
 const sign = async () => {
     try {
@@ -32,8 +29,9 @@ const sign = async () => {
             },
         }
         function callback(error, response, body) {
+            console.log(error, response, body)
             if (!error && response.statusCode == 200) {
-                sendMail(body)
+                sendMail(JSON.parse(body))
             }
         }
         request.post(options, callback)
@@ -42,7 +40,7 @@ const sign = async () => {
     }
 }
 
-const sendMail = async (msg) => {
+const sendMail = async ({msg}) => {
     try {
         //html 页面内容
         const html = `<h1>${msg}</h1>`;
@@ -88,4 +86,3 @@ cron.schedule("14 1 16 * * *", function(){
 }, {
    timezone: "Asia/Shanghai"
  });
-app.listen("3128");

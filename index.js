@@ -22,10 +22,10 @@ const sign = async () => {
                 'Origin': 'http://106.52.253.76',
                 'Pragma': 'no-cache',
                 'Referer': 'http://106.52.253.76/gdAct/pages/gdAct/sign?actLogId=1',
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.57',
-                'code': '3216775d-c3dd-48b8-9b4a-77f898d6890d',
+                'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/115.0.0.0',
+                'code': '9c6ee1ff-f0e7-4a81-9137-810afe77a089',
                 'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
-                'userAccount': '13302331556',
+                'userAccount': '13316096692',
             },
         }
         function callback(error, response, body) {
